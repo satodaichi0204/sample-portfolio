@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>社労士事務所 業務改善デモ</title>
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#1d2433;--sub:#5b6577;--line:#dde3ec;--navy:#1f3a5f;--teal:#0f8b8d;--teal-l:#e3f4f4;--red:#c0392b;--red-l:#fdecea;--amber:#b7791f;--amber-l:#fff6e0;--green:#2f855a;--green-l:#e6f4ea;--mail:#2b6cb0;--line-c:#06a94d;--tel:#805ad5}
+@media (prefers-color-scheme:dark){:root{--bg:#11161f;--card:#1a212d;--ink:#e6eaf1;--sub:#9aa5b8;--line:#2c3545;--navy:#9cc3ef;--teal:#4fc4c6;--teal-l:#163536;--red:#ff8a7a;--red-l:#3a1f1d;--amber:#f0c060;--amber-l:#3a3017;--green:#7ad19c;--green-l:#1b3326}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.notice{background:var(--navy);color:#fff;font-size:13px;text-align:center;padding:6px 12px}
+@media (prefers-color-scheme:dark){.notice{color:#11161f}}
+header.hero{padding:40px 0 24px}
+.hero h1{font-size:clamp(22px,4vw,32px);margin:0 0 8px;color:var(--navy);line-height:1.4}
+.hero p{margin:0;color:var(--sub)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pills a{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px}
+.pills a:hover{border-color:var(--teal)}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;margin:20px 0}
+section h2{margin:0 0 4px;font-size:20px;color:var(--navy)}
+.lead{color:var(--sub);margin:0 0 16px;font-size:14px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;font-size:14px;margin-right:8px;vertical-align:2px}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;min-height:40px}
+button.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+button.small{padding:4px 10px;min-height:32px;font-size:13px;white-space:nowrap;flex:none}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.stat{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 14px}
+.stat div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-width:110px}
+.stat b{display:block;font-size:20px;color:var(--navy)}
+.stat span{font-size:12px;color:var(--sub)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid2>*,.item>*{min-width:0}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--bg)}
+.box h3{margin:0 0 8px;font-size:15px}
+.before li{color:var(--sub)}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+.t-mail{background:var(--mail)}.t-line{background:var(--line-c)}.t-tel{background:var(--tel)}
+.badge{display:inline-block;font-size:12px;padding:1px 8px;border-radius:6px;white-space:nowrap}
+.b-red{background:var(--red-l);color:var(--red)}.b-amber{background:var(--amber-l);color:var(--amber)}.b-green{background:var(--green-l);color:var(--green)}.b-teal{background:var(--teal-l);color:var(--teal)}
+.inbox{display:flex;flex-direction:column;gap:8px}
+.item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card)}
+.item.overdue{border-color:var(--red);background:var(--red-l)}
+.item.done{opacity:.55}
+.item .meta{font-size:12px;color:var(--sub)}
+.item .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:600px){.item{grid-template-columns:1fr}.item .acts{justify-content:flex-start}}
+.staff{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.staff label{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--bg);font-size:14px}
+.staff .cnt{font-weight:700;color:var(--navy)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{background:var(--bg);font-weight:600}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{font-weight:700;background:var(--teal-l)}
+tr.warn td{background:var(--amber-l)}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:12px;margin:0;white-space:pre}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
+.arrow{color:var(--teal);font-weight:700}
+.file{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;word-break:break-all}
+.raw{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;white-space:pre;overflow-x:auto;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+@media (prefers-color-scheme:dark){.tabs button[aria-selected="true"]{color:#11161f}}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--bg)}
+.card h3{margin:0 0 6px;font-size:15px;color:var(--navy)}
+.card p{margin:0;font-size:14px;color:var(--sub)}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.roles div{padding:14px;text-align:center}
+.roles div+div{border-left:1px solid var(--line)}
+.roles b{display:block;font-size:16px;color:var(--navy)}
+.roles span{font-size:13px;color:var(--sub)}
+@media (max-width:600px){.roles{grid-template-columns:1fr}.roles div+div{border-left:0;border-top:1px solid var(--line)}}
+.phase{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.phase:last-child{border-bottom:0}
+.phase b{color:var(--teal)}
+@media (max-width:600px){.phase{grid-template-columns:1fr;gap:2px}}
+.note{font-size:12px;color:var(--sub);margin-top:10px}
+label.inline{display:inline-flex;align-items:center;gap:6px;font-size:14px}
+input[type=number]{width:90px;font:inherit;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+footer{color:var(--sub);font-size:13px;text-align:center;padding:24px 16px 40px}
+</style>
+</head>
+<body>
+<div class="notice">提案用のデモページです。登場する事務所・顧客・人物・データはすべて架空で、入力内容はどこにも送信されません。</div>
+<div class="wrap">
+<header class="hero">
+<h1>社会保険労務士事務所の<br>業務の一元化・自動化 提案デモ</h1>
+<p>ご依頼の3つの課題を、架空のデータで実際に動かしてご覧いただけます。</p>
+<nav class="pills" aria-label="ページ内リンク">
+<a href="#s1">1. 連絡の一元化</a><a href="#s2">2. 電子申請の自動整理</a><a href="#s3">3. 勤怠の自動計算</a><a href="#s4">4. AIの役割と安全</a><a href="#s5">5. 導入の進め方</a>
+</nav>
+</header>
+
+<!-- 1 -->
+<section id="s1" aria-labelledby="h1">
+<h2 id="h1"><span class="num">1</span>連絡の一元化と、業務の見える化</h2>
+<p class="lead">電話・メール・LINEの連絡を1つの「案件一覧」に集め、顧客ごとに担当者を自動で割り振ります。担当者が不在の日は、副担当へ自動で引き継ぎます。</p>
+<div class="grid2" style="margin-bottom:14px">
+<div class="box before"><h3>現在</h3><ul style="margin:0;padding-left:20px"><li>連絡が担当者個人のメール・LINE・電話に届く</li><li>他の職員からは、何が届いているか見えない</li><li>担当者が不在だと、誰も対応できない</li></ul></div>
+<div class="box"><h3>改善後</h3><ul style="margin:0;padding-left:20px"><li>共同トレイ・LINE公式アカウント・電話メモを1つの一覧に集約</li><li>顧客ごとの担当者に自動で割り振り、状態を全員で共有</li><li>期限切れの案件は警告、不在時は副担当へ自動で引き継ぎ</li></ul></div>
+</div>
+<div class="bar">
+<button class="primary" id="recv">新着の連絡を受信する</button>
+<button id="autoplay">自動で再生</button>
+<button id="reset1">最初に戻す</button>
+</div>
+<div class="staff" id="staff" aria-label="職員の状況"></div>
+<div class="stat">
+<div><b id="c-open">0</b><span>未対応</span></div>
+<div><b id="c-doing">0</b><span>対応中</span></div>
+<div><b id="c-over">0</b><span>期限切れ（24時間超）</span></div>
+<div><b id="c-done">0</b><span>完了</span></div>
+</div>
+<div class="inbox" id="inbox" aria-live="polite"></div>
+<p class="note">実際の構成：Googleグループの共同トレイ／LINE公式アカウント（Messaging APIのWebhook）／電話メモのGoogleフォーム → Google Apps Scriptで担当者を判定 → スプレッドシート（またはAppSheet）の案件一覧とGoogleチャットへの通知。</p>
+</section>
+
+<!-- 2 -->
+<section id="s2" aria-labelledby="h2">
+<h2 id="h2"><span class="num">2</span>電子申請の公文書を、自動でリネーム・保管</h2>
+<p class="lead">公文書に含まれるXMLのデータから、事業所名・手続名・氏名を読み取り、ファイル名と保存先を自動で決めます。画面の見た目から推測しないため、名前の付け間違いが起きません。</p>
+<div class="bar"><button class="primary" id="run2">ダウンロード済みの公文書（見本）を自動整理する</button><button id="reset2">最初に戻す</button></div>
+<div class="grid2">
+<div><h3 style="font-size:15px;margin:0 0 8px">読み込むデータの例（XML・見本）</h3><pre id="xmlsample"></pre></div>
+<div><h3 style="font-size:15px;margin:0 0 8px">整理の流れ</h3>
+<div class="flow"><span class="badge b-teal">電子申請の完了</span><span class="arrow">→</span><span class="badge b-teal">公文書をダウンロード（RPA）</span><span class="arrow">→</span><span class="badge b-teal">XMLを読み取り</span><span class="arrow">→</span><span class="badge b-teal">リネームして共有ドライブへ</span><span class="arrow">→</span><span class="badge b-teal">担当者へ通知</span></div>
+<p class="note">読み取れない項目がある公文書は、勝手に名前を付けず「要確認」フォルダへ移し、担当者に通知します。</p>
+<div class="box" style="margin-top:10px"><h3>手作業の時間の削減（試算）</h3>
+<label class="inline">月の公文書の件数 <input type="number" id="n2" value="120" min="0" max="5000"> 件</label>
+<label class="inline">1件の手作業 <input type="number" id="m2" value="4" min="0" max="60"> 分</label>
+<p style="margin:8px 0 0">→ 毎月 <b id="save2" style="font-size:20px;color:var(--navy)">8.0</b> 時間の作業がなくなります</p></div>
+</div>
+</div>
+<div class="tablewrap" style="margin-top:14px"><table>
+<thead><tr><th>受け取った公文書</th><th>読み取った内容</th><th>新しいファイル名</th><th>保存先</th><th>結果</th></tr></thead>
+<tbody id="tb2"><tr><td colspan="5" style="color:var(--sub)">「自動整理する」を押すと、結果が表示されます。</td></tr></tbody>
+</table></div>
+<p class="note">※ XMLの項目名は説明用の見本です。実際の形式は、ご利用の電子申請のソフト（e-Govや各社の申請ソフト）を確認して合わせます。ソフトに一括ダウンロードやAPIの機能がある場合は、RPAよりそちらを優先します。</p>
+</section>
+
+<!-- 3 -->
+<section id="s3" aria-labelledby="h3">
+<h2 id="h3"><span class="num">3</span>形の違う勤怠データを、そろえて自動で計算</h2>
+<p class="lead">顧客ごとにばらばらな勤怠データを共通の形に変換し、法定時間外・深夜・休日・月60時間超の時間外を計算します。法令上の注意が必要な箇所には、自動で「要確認」の印を付けます。</p>
+<div class="tabs" role="tablist" aria-label="顧客の選択" id="tabs3"></div>
+<div class="grid2">
+<div><h3 style="font-size:15px;margin:0 0 8px" id="rawtitle">届いたデータ</h3><div class="raw" id="raw3"></div></div>
+<div class="box"><h3>この顧客の計算ルール（顧客ごとに設定）</h3><div id="rule3" style="font-size:14px"></div>
+<label class="inline" style="margin-top:8px"><input type="checkbox" id="round3"> 月の合計の端数を処理する（30分未満切り捨て・30分以上は1時間に切り上げ）</label>
+<p class="note">1日ごとに15分未満を切り捨てる処理は、労働時間の切り捨てにあたるため行いません。認められている「1か月の合計での端数処理」だけを選べます。</p></div>
+</div>
+<div class="tablewrap" style="margin-top:14px"><table>
+<thead><tr><th>日付</th><th>出勤</th><th>退勤</th><th class="r">休憩</th><th class="r">実働</th><th class="r">法定時間外</th><th class="r">うち60時間超</th><th class="r">深夜</th><th class="r">法定休日</th><th>チェック</th></tr></thead>
+<tbody id="tb3"></tbody>
+</table></div>
+<p class="note" id="note3"></p>
+</section>
+
+<!-- 4 -->
+<section id="s4" aria-labelledby="h4">
+<h2 id="h4"><span class="num">4</span>AIの役割分担と、安全の方針</h2>
+<p class="lead">給与に関わる計算は、1分の誤りも許されません。AIは得意な「読み取り」に使い、計算は検証できるプログラムで行い、最後は人が確認します。</p>
+<div class="roles">
+<div><b>AI</b><span>紙のタイムカードの写真、形のそろわないPDFやメールを、表のデータに変換する</span></div>
+<div><b>プログラム</b><span>時間外・深夜・休日・60時間超を、毎回同じルールで正確に計算する</span></div>
+<div><b>人</b><span>「要確認」の行と最終結果を確認し、社労士として判断する</span></div>
+</div>
+<div class="cards" style="margin-top:14px">
+<div class="card"><h3>マイナンバーはAIに入れない</h3><p>マイナンバーなどの特定個人情報は、AIに入力しない運用ルールを定めます。AIは、入力データが学習に使われない法人向けのプランと設定で利用します。</p></div>
+<div class="card"><h3>自動化を属人化させない</h3><p>自動化を職員個人のアカウントで作ると、その方の退職で止まります。事務所の共有の管理用アカウントで作成し、手順書を残します。</p></div>
+<div class="card"><h3>止まったことに気づける</h3><p>自動化が止まっても誰も気づかないことが最も危険です。エラー時の通知と、毎日の処理件数の記録を入れます。</p></div>
+</div>
+</section>
+
+<!-- 5 -->
+<section id="s5" aria-labelledby="h5">
+<h2 id="h5"><span class="num">5</span>導入の進め方（例）</h2>
+<p class="lead">効果がすぐに出るものから、段階に分けて導入します。各段階で、職員の皆さまにご確認いただきながら進めます。</p>
+<div class="phase"><b>第1段階</b><div><strong>連絡の一元化</strong>：業務のヒアリング、共同トレイとLINE公式アカウントの導入、案件一覧と通知の仕組み。<br><span class="badge b-green">効果</span> 連絡の失念・対応の遅れ・不在時の空白がすぐに減る</div></div>
+<div class="phase"><b>第2段階</b><div><strong>電子申請の自動整理</strong>：ダウンロード、リネーム、共有ドライブへの保管、担当者への通知。<br><span class="badge b-green">効果</span> 申請ごとの手作業がなくなる</div></div>
+<div class="phase"><b>第3段階</b><div><strong>勤怠の自動計算</strong>：数社で試行し、計算ルールを確認してから全顧客へ広げる。<br><span class="badge b-green">効果</span> 給与計算の前の集計と確認の作業が減る</div></div>
+<div class="phase"><b>継続</b><div><strong>定着と改善</strong>：手順書、職員への説明、AIの使い方の助言、保守。<br><span class="badge b-green">効果</span> 誰が担当しても同じ品質で業務が回る</div></div>
+</section>
+</div>
+<footer>提案用デモ／架空のデータのみを使用しています。実際の業務データは、ヒアリングと確認のうえで設計します。</footer>
+
+<script>
+(()=>{
+/* ---------- 1. Inbox ---------- */
+const STAFF={tanaka:"田中",suzuki:"鈴木",takahashi:"高橋"};
+const CLIENTS={
+ "あさひ製作所":{main:"tanaka",sub:"suzuki"},
+ "みどり介護サービス":{main:"suzuki",sub:"takahashi"},
+ "こはる商店":{main:"takahashi",sub:"tanaka"},
+ "北斗運輸":{main:"tanaka",sub:"takahashi"}
+};
+const SEED=[
+ {ch:"mail",client:"あさひ製作所",text:"11月入社の2名について、社会保険の手続きをお願いします。",age:26},
+ {ch:"line",client:"こはる商店",text:"パートさんが1名、今月末で退職します。必要な書類を教えてください。",age:3}
+];
+const QUEUE=[
+ {ch:"tel",client:"北斗運輸",text:"（電話メモ）ドライバーの残業時間の集計方法について相談したいとのこと。折り返し希望。"},
+ {ch:"mail",client:"みどり介護サービス",text:"10月分の勤怠データを送ります。夜勤の方が2名増えています。"},
+ {ch:"line",client:"あさひ製作所",text:"育児休業を取りたい社員がいます。手続きの流れを教えてください。"},
+ {ch:"mail",client:"こはる商店",text:"年末調整の資料の提出期限はいつでしょうか。"},
+ {ch:"tel",client:"みどり介護サービス",text:"（電話メモ）労災の可能性がある事故が発生。至急連絡がほしいとのこと。",urgent:true}
+];
+const CHN={mail:["メール","t-mail"],line:["LINE","t-line"],tel:["電話","t-tel"]};
+let items=[],q=0,absent={},timer=null,seq=0;
+function assignee(it){const c=CLIENTS[it.client];if(absent[c.main])return{who:c.sub,proxy:true};return{who:c.main,proxy:false}}
+function add(src){items.unshift({...src,id:++seq,status:"open",age:src.age||0})}
+function reset1(){items=[];q=0;absent={};seq=0;stop();SEED.slice().reverse().forEach(add);render1()}
+function render1(){
+ const st=document.getElementById("staff");st.innerHTML="";
+ for(const k in STAFF){const n=items.filter(i=>i.status!=="done"&&assignee(i).who===k).length;
+  const l=document.createElement("label");l.innerHTML=`<input type="checkbox" ${absent[k]?"checked":""} data-k="${k}"> ${STAFF[k]}さん 不在 <span class="cnt">${n}件</span>`;st.appendChild(l)}
+ st.querySelectorAll("input").forEach(c=>c.onchange=e=>{absent[e.target.dataset.k]=e.target.checked;render1()});
+ const box=document.getElementById("inbox");box.innerHTML="";
+ for(const it of items){const a=assignee(it);const over=it.status!=="done"&&it.age>=24;
+  const d=document.createElement("div");d.className="item"+(over?" overdue":"")+(it.status==="done"?" done":"");
+  const stLabel={open:'<span class="badge b-amber">未対応</span>',doing:'<span class="badge b-teal">対応中</span>',done:'<span class="badge b-green">完了</span>'}[it.status];
+  d.innerHTML=`<span class="tag ${CHN[it.ch][1]}">${CHN[it.ch][0]}</span>
+  <div><div><strong>${it.client}（架空）</strong> ${it.urgent?'<span class="badge b-red">至急</span>':''} ${over?'<span class="badge b-red">期限切れ・受信から'+it.age+'時間</span>':''}</div>
+  <div>${it.text}</div>
+  <div class="meta">担当：${STAFF[a.who]}さん${a.proxy?'（'+STAFF[CLIENTS[it.client].main]+'さん不在のため代理）':''}　${stLabel}</div></div>
+  <div class="acts">${it.status==="open"?`<button class="small" data-a="doing" data-id="${it.id}">対応中にする</button>`:""}${it.status!=="done"?`<button class="small" data-a="done" data-id="${it.id}">完了にする</button>`:""}</div>`;
+  box.appendChild(d)}
+ box.querySelectorAll("button").forEach(b=>b.onclick=()=>{const it=items.find(x=>x.id==b.dataset.id);it.status=b.dataset.a;render1()});
+ const cnt=s=>items.filter(i=>i.status===s).length;
+ document.getElementById("c-open").textContent=cnt("open");
+ document.getElementById("c-doing").textContent=cnt("doing");
+ document.getElementById("c-done").textContent=cnt("done");
+ document.getElementById("c-over").textContent=items.filter(i=>i.status!=="done"&&i.age>=24).length;
+ document.getElementById("recv").disabled=q>=QUEUE.length;
+}
+function recv(){if(q<QUEUE.length){add(QUEUE[q++]);render1()}}
+function stop(){if(timer){clearInterval(timer);timer=null}document.getElementById("autoplay").textContent="自動で再生"}
+document.getElementById("recv").onclick=recv;
+document.getElementById("reset1").onclick=reset1;
+document.getElementById("autoplay").onclick=()=>{
+ if(timer){stop();return}
+ if(q>=QUEUE.length)reset1();
+ document.getElementById("autoplay").textContent="一時停止";
+ let step=0;
+ timer=setInterval(()=>{
+  step++;
+  if(q<QUEUE.length){recv();if(step===3){absent.tanaka=true;render1()}}
+  else{const it=items.find(i=>i.status==="open");if(it){it.status=step%2?"doing":"done";render1()}else stop()}
+ },1400)};
+reset1();
+
+/* ---------- 2. e-filing ---------- */
+const DOCS=[
+ {file:"20261104-000123.zip",xml:{到達番号:"20261104-000123",手続名:"健康保険・厚生年金保険被保険者資格取得届",事業所名:"株式会社あさひ製作所",被保険者氏名:"山本 太郎",通知日:"2026-11-04"}},
+ {file:"20261104-000124.zip",xml:{到達番号:"20261104-000124",手続名:"雇用保険被保険者資格喪失届",事業所名:"こはる商店",被保険者氏名:"中村 花子",通知日:"2026-11-04"}},
+ {file:"20261104-000125.zip",xml:{到達番号:"20261104-000125",手続名:"健康保険・厚生年金保険被保険者報酬月額算定基礎届",事業所名:"社会福祉法人みどり介護サービス",被保険者数:"18",通知日:"2026-11-04"}},
+ {file:"20261104-000126.zip",xml:{到達番号:"20261104-000126",手続名:"健康保険・厚生年金保険被保険者資格取得届",事業所名:"",被保険者氏名:"小林 次郎",通知日:"2026-11-04"}}
+];
+const SHORT=[
+ [/雇用保険.*資格取得/,"雇保_資格取得届","労働保険"],
+ [/雇用保険.*資格喪失/,"雇保_資格喪失届","労働保険"],
+ [/算定基礎/,"算定基礎届","社会保険"],
+ [/資格取得/,"社保_資格取得届","社会保険"],
+ [/資格喪失/,"社保_資格喪失届","社会保険"]
+];
+function toXml(o){return '<公文書 見本="true">\n'+Object.entries(o).map(([k,v])=>`  <${k}>${v}</${k}>`).join("\n")+"\n</公文書>"}
+document.getElementById("xmlsample").textContent=toXml(DOCS[0].xml);
+function client(n){return n.replace(/^(株式会社|社会福祉法人|有限会社|合同会社)/,"").replace(/(株式会社)$/,"")}
+function run2(){
+ const tb=document.getElementById("tb2");tb.innerHTML="";
+ for(const d of DOCS){const x=d.xml;const m=SHORT.find(s=>s[0].test(x.手続名));
+  const who=x.被保険者氏名?x.被保険者氏名.replace(/\s/g,""):(x.被保険者数?x.被保険者数+"名分":"");
+  const ok=m&&x.事業所名&&who&&x.通知日;
+  const read=`事業所：${x.事業所名||'<span class="badge b-red">読み取れず</span>'}<br>手続：${x.手続名}<br>対象：${x.被保険者氏名||(x.被保険者数?x.被保険者数+"名":"-")}`;
+  let name,dest,res;
+  if(ok){const c=client(x.事業所名);name=`${x.通知日}_${c}_${m[1]}_${who}.pdf`;dest=`共有ドライブ/顧客/${c}/2026年度/${m[2]}/`;res='<span class="badge b-green">保存・通知済み</span>'}
+  else{name="（自動では名前を付けません）";dest="共有ドライブ/要確認/";res='<span class="badge b-amber">要確認・担当者へ通知</span>'}
+  const tr=document.createElement("tr");if(!ok)tr.className="warn";
+  tr.innerHTML=`<td class="file">${d.file}</td><td style="white-space:normal;min-width:200px">${read}</td><td class="file" style="white-space:normal;min-width:200px">${name}</td><td class="file" style="white-space:normal;min-width:170px">${dest}</td><td>${res}</td>`;
+  tb.appendChild(tr)}
+}
+document.getElementById("run2").onclick=run2;
+document.getElementById("reset2").onclick=()=>{document.getElementById("tb2").innerHTML='<tr><td colspan="5" style="color:var(--sub)">「自動整理する」を押すと、結果が表示されます。</td></tr>'};
+function calc2(){const n=+document.getElementById("n2").value||0,m=+document.getElementById("m2").value||0;document.getElementById("save2").textContent=(n*m/60).toFixed(1)}
+document.getElementById("n2").oninput=calc2;document.getElementById("m2").oninput=calc2;calc2();
+
+/* ---------- 3. Attendance ---------- */
+// 2026-10-05 is Monday. Week = Mon–Sun (configurable per client). Legal holiday = Sunday.
+const WD=["日","月","火","水","木","金","土"];
+const C3=[
+ {key:"A",name:"あさひ製作所",emp:"山本（架空）",fmt:"勤怠システムのCSV",prior:52*60,
+  raw:"日付,出勤,退勤,休憩(分)\n2026/10/05,9:00,18:00,60\n2026/10/06,9:00,20:30,60\n2026/10/07,9:00,18:00,60\n2026/10/08,9:00,23:00,60\n2026/10/09,9:00,18:00,60\n2026/10/10,9:00,14:00,0",
+  parse(t){return t.split("\n").slice(1).map(l=>{const[a,b,c,d]=l.split(",");return{date:a.replace(/\//g,"-"),in:b,out:c,brk:+d}})}},
+ {key:"B",name:"みどり介護サービス",emp:"小林（架空）",fmt:"エクセルの独自様式（時刻は4桁、休憩は時:分）",prior:10*60,
+  raw:"社員番号\t日\t始業\t終業\t休憩\n0107\t10/5\t1700\t0200\t1:00\n0107\t10/7\t0900\t1815\t0:45\n0107\t10/8\t2200\t0700\t1:00\n0107\t10/9\t0900\t1545\t0:30\n0107\t10/11\t0900\t1300\t0:00",
+  parse(t){return t.split("\n").slice(1).map(l=>{const[,d,a,b,c]=l.split("\t");const[mo,da]=d.split("/");const[h,mi]=c.split(":");return{date:`2026-${mo.padStart(2,"0")}-${da.padStart(2,"0")}`,in:a.slice(0,2)+":"+a.slice(2),out:b.slice(0,2)+":"+b.slice(2),brk:h*60+ +mi}})}},
+ {key:"C",name:"こはる商店",emp:"中村（架空）",fmt:"紙のタイムカード → AIで読み取り（信頼度つき）",prior:3*60,
+  raw:"【AIの読み取り結果】日付 / 出勤 / 退勤 / 休憩 / 信頼度\n10/05  08:58  18:05  60分  0.98\n10/06  09:02  1?:??  60分  0.41\n10/07  09:00  19:00  60分  0.97\n10/08  09:00  18:00  60分  0.99\n10/09  09:00  18:00  60分  0.96",
+  parse(t){return t.split("\n").slice(1).map(l=>{const p=l.trim().split(/\s+/);return{date:"2026-"+p[0].replace("/","-"),in:p[1],out:/\?/.test(p[2])?null:p[2],brk:parseInt(p[3]),conf:+p[4]}})}}
+];
+const toMin=s=>{const[h,m]=s.split(":").map(Number);return h*60+m};
+const fmt=m=>{if(!m)return "-";const h=Math.floor(m/60),mm=m%60;return h+":"+String(mm).padStart(2,"0")};
+const ov=(a,b,c,d)=>Math.max(0,Math.min(b,d)-Math.max(a,c));
+function roundMonth(m){const h=Math.floor(m/60),r=m%60;return (r>=30?h+1:h)*60}
+function compute(c){
+ const rows=c.parse(c.raw);let weekReg=0,otCum=c.prior;const out=[];
+ for(const r of rows){
+  const dt=new Date(r.date+"T00:00:00");const wd=dt.getDay();const flags=[];
+  if(!r.out){flags.push(["red","退勤の読み取り不鮮明（信頼度"+r.conf+"）・原本を確認"]);out.push({...r,wd,work:0,ot:0,ot60:0,night:0,hol:0,flags});continue}
+  let s=toMin(r.in),e=toMin(r.out);if(e<=s)e+=1440;
+  const span=e-s,work=span-r.brk;
+  const night=ov(s,e,22*60,29*60)+ov(s,e,-120,5*60);
+  if(r.conf!==undefined&&r.conf<0.9)flags.push(["amber","読み取りの信頼度が低い"]);
+  const need=work>480?60:work>360?45:0;
+  if(r.brk<need)flags.push(["red",`休憩不足（${need}分以上が必要）`]);
+  if(work>720)flags.push(["amber","1日12時間超の勤務"]);
+  let ot=0,hol=0;
+  if(wd===0){hol=work;flags.push(["teal","法定休日の労働（35%以上の割増）"])}
+  else{const daily=Math.max(0,work-480);let reg=work-daily;let weekly=0;
+   if(weekReg+reg>2400){weekly=weekReg+reg-2400;reg-=weekly}
+   weekReg+=reg;ot=daily+weekly;if(weekly)flags.push(["teal",`週40時間超 ${fmt(weekly)} を時間外に計上`])}
+  const before=otCum;otCum+=ot;const ot60=Math.max(0,otCum-3600)-Math.max(0,before-3600);
+  if(ot60>0)flags.push(["red","月60時間超（50%以上の割増）"]);
+  out.push({...r,wd,work,ot,ot60,night,hol,flags})}
+ return out}
+let cur=0;
+const tabs=document.getElementById("tabs3");
+C3.forEach((c,i)=>{const b=document.createElement("button");b.setAttribute("role","tab");b.textContent=c.name+"（架空）";b.onclick=()=>{cur=i;render3()};tabs.appendChild(b)});
+document.getElementById("round3").onchange=render3;
+function render3(){
+ const c=C3[cur];[...tabs.children].forEach((b,i)=>b.setAttribute("aria-selected",i===cur));
+ document.getElementById("rawtitle").textContent="届いたデータ："+c.fmt;
+ document.getElementById("raw3").textContent=c.raw;
+ document.getElementById("rule3").innerHTML=`対象：${c.emp}<br>法定労働時間：1日8時間／週40時間（月曜始まり）<br>法定休日：日曜日<br>深夜：22時〜翌5時<br>前日までの今月の時間外の累計：<b>${fmt(c.prior)}</b>`;
+ const rows=compute(c);const tb=document.getElementById("tb3");tb.innerHTML="";
+ const sum={work:0,ot:0,ot60:0,night:0,hol:0};let nflag=0;
+ for(const r of rows){for(const k in sum)sum[k]+=r[k];
+  const bad=r.flags.some(f=>f[0]==="red"||f[0]==="amber");if(bad)nflag++;
+  const tr=document.createElement("tr");if(bad)tr.className="warn";
+  tr.innerHTML=`<td>${r.date.slice(5).replace("-","/")}（${WD[r.wd]}）</td><td>${r.in}</td><td>${r.out||"？"}</td><td class="r">${r.brk}分</td><td class="r">${fmt(r.work)}</td><td class="r">${fmt(r.ot)}</td><td class="r">${fmt(r.ot60)}</td><td class="r">${fmt(r.night)}</td><td class="r">${fmt(r.hol)}</td><td style="white-space:normal;min-width:180px">${r.flags.map(f=>`<span class="badge b-${f[0]}">${f[1]}</span>`).join(" ")||'<span class="badge b-green">問題なし</span>'}</td>`;
+  tb.appendChild(tr)}
+ const rd=document.getElementById("round3").checked;const g=m=>fmt(rd?roundMonth(m):m);
+ const tr=document.createElement("tr");tr.className="total";
+ tr.innerHTML=`<td colspan="4">合計${rd?"（月合計で端数処理）":""}</td><td class="r">${g(sum.work)}</td><td class="r">${g(sum.ot)}</td><td class="r">${g(sum.ot60)}</td><td class="r">${g(sum.night)}</td><td class="r">${g(sum.hol)}</td><td>要確認 ${nflag}件</td>`;
+ tb.appendChild(tr);
+ document.getElementById("note3").textContent="※ 説明用の簡略化した計算です（休憩は深夜の時間帯以外に取得したものとして計算）。実際の導入では、顧客ごとの就業規則・変形労働時間制・休日の定めを確認して設定し、結果は職員の方の確認を経て給与計算に使用します。";
+}
+render3();
+})();
+</script>
+</body>
+</html>
